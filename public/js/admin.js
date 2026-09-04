@@ -127,7 +127,7 @@ function setupEventListeners() {
 // --- TRANSAKSI & TABEL SEDERHANA ---
 async function fetchTransactions() {
   const tbody = document.getElementById('transactionTableBody');
-  tbody.innerHTML = '<tr><td colspan="7" class="py-8 text-center text-slate-400">Memuat data...</td></tr>';
+  tbody.innerHTML = '<tr><td colspan="8" class="py-8 text-center text-slate-400">Memuat data...</td></tr>';
 
   try {
     const params = new URLSearchParams();
@@ -140,7 +140,7 @@ async function fetchTransactions() {
 
     renderTransactionsTable(allTransactions);
   } catch (err) {
-    tbody.innerHTML = '<tr><td colspan="7" class="py-8 text-center text-rose-500">Gagal memuat transaksi.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" class="py-8 text-center text-rose-500">Gagal memuat transaksi.</td></tr>';
   }
 }
 
@@ -151,7 +151,7 @@ function renderTransactionsTable(data) {
   if (!data || data.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="7" class="py-12 text-center text-slate-400">
+        <td colspan="8" class="py-12 text-center text-slate-400">
           <i data-lucide="inbox" class="w-7 h-7 mx-auto mb-2 text-slate-300"></i>
           Tidak ada data transaksi yang sesuai filter.
         </td>
@@ -188,7 +188,12 @@ function renderTransactionsTable(data) {
           </span>
         </td>
 
-        <!-- 3. Harga Beli -->
+        <!-- 3. Barang dan Warna -->
+        <td class="py-3.5 px-4 font-bold text-slate-800">
+          ${tx.item_description}
+        </td>
+
+        <!-- 4. Harga Beli -->
         <td class="py-3.5 px-4 text-right font-mono font-medium text-slate-700">
           Rp ${formatRupiah(tx.buy_price)}
         </td>

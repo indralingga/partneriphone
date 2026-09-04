@@ -2,7 +2,7 @@
 # ============================================================
 # DEPLOY SCRIPT — iPhone Partner & Profit Management System
 # VPS: Ubuntu / Debian
-# Port: 3390
+# Port: 3003
 # ============================================================
 
 set -e
@@ -45,7 +45,7 @@ fi
 echo "⚙️  [4/6] Menyiapkan environment (.env)..."
 if [ ! -f "$APP_DIR/.env" ]; then
     cp "$APP_DIR/.env.example" "$APP_DIR/.env"
-    echo "   ✅ File .env dibuat dari .env.example (Port: 3390, PIN: 1234)"
+    echo "   ✅ File .env dibuat dari .env.example (Port: 3003, PIN: 1234)"
     echo "   💡 Anda bisa mengedit PIN dengan: nano .env"
 fi
 
@@ -63,7 +63,7 @@ pm2 save
 
 echo ""
 echo "=================================================="
-echo "  ✅ APLIKASI BERHASIL DIJALANKAN DI PORT 3390!"
+echo "  ✅ APLIKASI BERHASIL DIJALANKAN DI PORT 3003!"
 echo "=================================================="
 echo ""
 echo "Cek status aplikasi:"

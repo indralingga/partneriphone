@@ -4,17 +4,17 @@ Sistem manajemen transaksi iPhone dan bagi hasil partner lokal berbasis Node.js,
 
 ## Fitur Utama
 
-1. **Portal Input Partner (`http://localhost:3390`)**:
+1. **Portal Input Partner (`http://localhost:3003`)**:
    - Form cepat & mobile-friendly untuk partner mengisi data transaksi:
      - **Nama Toko**
      - **ID Pemesanan**
      - **Barang dan Warna** (cth: `IP15 Blue`, `IP17 Black`)
      - **Harga Beli** (format Rupiah otomatis)
      - **Catatan Tambahan** (opsional)
-   - Dukungan link khusus per partner (contoh: `http://localhost:3390/p/budi`) sehingga identitas partner langsung terkunci.
+   - Dukungan link khusus per partner (contoh: `http://localhost:3003/p/budi`) sehingga identitas partner langsung terkunci.
    - Partner dapat melihat riwayat kiriman mereka dan status pembayarannya tanpa melihat data partner lain.
 
-2. **Dashboard Owner / Admin (`http://localhost:3390/admin`)**:
+2. **Dashboard Owner / Admin (`http://localhost:3003/admin`)**:
    - **PIN Keamanan**: Hanya Anda yang bisa melihat harga jual & profit (PIN default: `1234`).
    - **Kartu Ringkasan (KPIs)**:
      - Total Transaksi (Unit)
@@ -41,12 +41,12 @@ npm start
 ```
 
 Akses sistem di browser:
-- **Form Partner**: `http://localhost:3390`
-- **Dashboard Admin**: `http://localhost:3390/admin` (PIN default: `1234`)
+- **Form Partner**: `http://localhost:3003`
+- **Dashboard Admin**: `http://localhost:3003/admin` (PIN default: `1234`)
 
 ## Konfigurasi (`.env`)
 
 ```env
-PORT=3390
+PORT=3003
 ADMIN_PIN=1234
 ```

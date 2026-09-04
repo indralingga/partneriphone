@@ -5,7 +5,7 @@ const path = require('path');
 const { dbHelper } = require('./database');
 
 const app = express();
-const PORT = process.env.PORT || 3390;
+const PORT = process.env.PORT || 3003;
 const ADMIN_PIN = process.env.ADMIN_PIN || '1234';
 
 app.use(cors());

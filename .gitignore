@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Environment Variables (PIN & Sensitif)
+.env
+
+# Database Lokal (SQLite)
+database.sqlite
+database.sqlite-wal
+database.sqlite-shm
+
+# Logs & Cache
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

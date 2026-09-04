@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Partner iPhone</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 flex flex-col items-center py-6 px-4 sm:px-6">
+
+  <!-- Main Container -->
+  <div class="w-full max-w-xl space-y-6">
+    
+    <!-- Header Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+      <!-- Top Decorative Accent -->
+      <div class="h-2.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600"></div>
+      
+      <div class="p-6 sm:p-8">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
+            <i data-lucide="smartphone" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Database Partner iPhone</h1>
+            <p class="text-sm text-slate-500 mt-0.5">Form input data pemesanan unit untuk partner</p>
+          </div>
+        </div>
+
+        <!-- Partner Banner (Link Khusus Saja, Tombol Ganti Partner Dihapus) -->
+        <div id="partnerSection" class="mt-6 p-4 rounded-xl bg-indigo-50/60 border border-indigo-100/80 flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+            <i data-lucide="user-check" class="w-5 h-5"></i>
+          </div>
+          <div class="grow">
+            <div class="text-xs text-indigo-700 font-medium">Input Sebagai Partner:</div>
+            <div id="currentPartnerDisplay" class="font-bold text-slate-900 text-base">Memeriksa link...</div>
+          </div>
+        </div>
+
+        <!-- Warning jika link khusus tidak ada / tidak valid -->
+        <div id="missingPartnerAlert" class="hidden mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs flex items-start gap-2.5">
+          <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+          <div>
+            <span class="font-bold">Link Khusus Diperlukan:</span>
+            <p class="mt-0.5">Silakan buka form menggunakan <b>link khusus partner</b> yang diberikan oleh Admin (contoh: <code class="bg-amber-100/80 px-1 py-0.5 rounded">/p/nama-partner</code>) untuk dapat mengisi formulir ini.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Form Transaksi -->
+    <form id="transactionForm" class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 sm:p-8 space-y-5">
+      
+      <!-- 1. Nama Toko -->
+      <div>
+        <label for="store_name" class="block text-sm font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>Nama Toko</span>
+          <span class="text-rose-500">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="store_name" 
+          name="store_name" 
+          required 
+          placeholder="Nama toko tempat beli / marketplace" 
+          class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-sm transition"
+        >
+      </div>
+
+      <!-- 2. ID Pemesanan -->
+      <div>
+        <label for="order_id" class="block text-sm font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>ID Pemesanan</span>
+          <span class="text-rose-500">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="order_id" 
+          name="order_id" 
+          required 
+          placeholder="Nomor invoice / resi / order id" 
+          class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-sm transition"
+        >
+      </div>
+
+      <!-- 3. Barang dan Warna -->
+      <div>
+        <label for="item_description" class="block text-sm font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>Barang dan Warna</span>
+          <span class="text-rose-500">*</span>
+        </label>
+        <input 
+          type="text" 
+          id="item_description" 
+          name="item_description" 
+          required 
+          placeholder="contoh : IP15 Blue , IP17 Black" 
+          class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-sm transition"
+        >
+        <p class="text-xs text-slate-400 mt-1">Sertakan tipe model dan warna unit iPhone secara jelas</p>
+      </div>
+
+      <!-- 4. Harga Beli -->
+      <div>
+        <label for="buy_price_display" class="block text-sm font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>Harga Beli</span>
+          <span class="text-rose-500">*</span>
+        </label>
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 font-semibold text-sm">
+            Rp
+          </div>
+          <input 
+            type="text" 
+            id="buy_price_display" 
+            required 
+            placeholder="0" 
+            inputmode="numeric"
+            class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-base font-semibold text-slate-900 transition"
+          >
+          <input type="hidden" id="buy_price" name="buy_price" value="0">
+        </div>
+        <p id="terbilangBeli" class="text-xs text-indigo-600 font-medium mt-1.5 min-h-[16px]"></p>
+      </div>
+
+      <!-- 5. Metode Pembayaran (Sesuai Revisi Gambar 1) -->
+      <div>
+        <label for="payment_method" class="block text-sm font-semibold text-slate-700 mb-1.5 flex items-center gap-1.5">
+          <span>Metode Pembayaran</span>
+        </label>
+        <input 
+          type="text" 
+          id="payment_method" 
+          name="payment_method" 
+          placeholder="contoh : Transfer BCA, Mandiri, Cash, QRIS, dll." 
+          class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-hidden focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 text-sm transition"
+        >
+      </div>
+
+      <!-- Tombol Kirim -->
+      <div class="pt-2">
+        <button 
+          type="submit" 
+          id="btnSubmit" 
+          class="w-full py-3.5 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold text-sm shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+        >
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Kirim Transaksi</span>
+        </button>
+      </div>
+
+      <!-- Feedback Banner -->
+      <div id="alertSuccess" class="hidden p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-start gap-3">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
+        <div>
+          <div class="font-bold">Transaksi Berhasil Dikirim!</div>
+          <div class="text-xs text-emerald-700 mt-0.5">Data telah tersimpan di sistem. Tunggu admin melakukan verifikasi penjualan dan profit.</div>
+        </div>
+      </div>
+
+      <div id="alertError" class="hidden p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-start gap-3">
+        <i data-lucide="alert-circle" class="w-5 h-5 text-rose-600 shrink-0 mt-0.5"></i>
+        <div id="errorMessage" class="text-xs font-medium">Terjadi kesalahan saat menyimpan data.</div>
+      </div>
+
+    </form>
+
+    <!-- Riwayat Pengiriman Terakhir Partner Ini -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <i data-lucide="history" class="w-5 h-5 text-slate-500"></i>
+          <h2 class="font-bold text-slate-800 text-base">Riwayat Kiriman Anda</h2>
+        </div>
+        <button id="btnRefreshHistory" class="text-xs text-indigo-600 hover:text-indigo-800 flex items-center gap-1 font-semibold">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Refresh
+        </button>
+      </div>
+
+      <div id="historyList" class="space-y-3">
+        <div class="text-center py-6 text-slate-400 text-xs">Memuat riwayat...</div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center text-xs text-slate-400 pb-8">
+      Database Partner iPhone &copy; 2026 &bull; Form Partner Resmi
+    </div>
+
+  </div>
+
+  <script src="/js/partner.js"></script>
+</body>
+</html>
